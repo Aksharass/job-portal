@@ -1,18 +1,35 @@
-import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-
-const authAPI = axios.create({
-  baseURL: `${API_URL}/auth`,
-  headers: { "Content-Type": "application/json" },
-});
-
-export const registerUser = async (userData) => {
-  const res = await authAPI.post("/register", userData);
-  return res.data;
-};
+const API_URL = import.meta.env.VITE_API_URL; // Should be 'https://job-portal-a9iz.onrender.com/api'
 
 export const loginUser = async (credentials) => {
-  const res = await authAPI.post("/login", credentials);
-  return res.data;
+  const response = await fetch(`${API_URL}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Login failed");
+  }
+
+  return response.json();
+};
+
+export const registerUser = async (userData) => {
+  const response = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Registration failed");
+  }
+
+  return response.json();
 };
