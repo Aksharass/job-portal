@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const jobsAPI = axios.create({
-  baseURL: `${API_URL}/jobs`, // Updated to match backend route
+  baseURL: `${API_URL}`, // Updated to match backend route
   headers: { "Content-Type": "application/json" },
 });
 
