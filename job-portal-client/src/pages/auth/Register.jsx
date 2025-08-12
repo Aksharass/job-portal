@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../../api/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // <-- import useNavigate
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +12,7 @@ const Register = () => {
     role: "jobseeker",
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // <-- initialize navigate
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,6 +25,7 @@ const Register = () => {
     try {
       const response = await registerUser(form);
       toast.success(`User registered successfully: ${response.msg}`);
+      navigate("/login"); // <-- redirect to login page
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(`Registration failed: ${error.response?.data?.msg || error.message}`);

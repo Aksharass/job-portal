@@ -11,13 +11,14 @@ const Applications = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-           `${API_BASE}/user/applications`,
+          `${API_BASE}/user/applications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
+        console.log(response.data);
         setApplications(response.data);
       } catch (error) {
         console.error("Error fetching applications:", error);

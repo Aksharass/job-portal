@@ -13,7 +13,7 @@ exports.getUserApplications = async (req, res) => {
     res.json(applications.map(app => ({
       id: app._id,
       jobTitle: app.job?.title || '',
-      company: app.job?.createdBy?.username || '',
+      company: app.job?.company || '',
       location: app.job?.location || '',
       status: app.status
     })));

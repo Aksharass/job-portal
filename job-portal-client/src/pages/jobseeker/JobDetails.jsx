@@ -188,6 +188,7 @@ const JobDetails = () => {
                 }
                 className="mb-4 w-full border border-gray-300 rounded p-2 text-sm"
                 disabled={job.applied}
+                required
               />
               <textarea
                 placeholder="Cover Letter"
@@ -201,6 +202,7 @@ const JobDetails = () => {
                 className="mb-4 w-full border border-gray-300 rounded p-2 text-sm resize-none"
                 rows={4}
                 disabled={job.applied}
+                required
               ></textarea>
               <div className="flex flex-col sm:flex-row justify-end gap-2">
                 <button
