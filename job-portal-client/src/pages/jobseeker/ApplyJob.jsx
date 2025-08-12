@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 const ApplyJob = () => {
   const { jobId } = useParams();
@@ -24,7 +25,7 @@ const ApplyJob = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/jobs/${jobId}/apply`,
+       `${API_BASE}/jobs/${jobId}/apply`,
         form,
         {
           headers: {

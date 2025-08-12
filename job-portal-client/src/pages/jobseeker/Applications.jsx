@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const Applications = () => {
   const [applications, setApplications] = useState([]);
 
@@ -9,7 +11,7 @@ const Applications = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:5000/api/user/applications`,
+           `${API_BASE}/user/applications`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

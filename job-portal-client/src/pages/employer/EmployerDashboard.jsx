@@ -6,6 +6,8 @@ import PostJob from "./PostJob";
 import { toast } from "react-toastify";
 import ViewApplicants from "./ViewApplicants"; // Import the ViewApplicants component
 import { Link } from "react-router-dom";
+const API_BASE = import.meta.env.VITE_API_URL;
+
 
 const EmployerDashboard = () => {
   const { token } = useSelector((state) => state.auth);
@@ -24,7 +26,7 @@ const EmployerDashboard = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/employer/jobs",
+          `${API_BASE}/employer/jobs`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -43,7 +45,7 @@ const EmployerDashboard = () => {
 
   const handleDelete = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/employer/jobs/${jobId}`, {
+      await axios.delete(`${API_BASE}/employer/jobs/${jobId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -78,7 +80,7 @@ const EmployerDashboard = () => {
     setSelectedJob(jobId);
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/employer/jobs/${jobId}/applicants`,
+       `${API_BASE}/employer/jobs/${jobId}/applicants`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

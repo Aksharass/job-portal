@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const ViewApplicants = () => {
   const { jobId } = useParams();
   const [applicants, setApplicants] = useState([]);
@@ -12,7 +14,7 @@ const ViewApplicants = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/api/employer/jobs/${jobId}/applicants`,
+           `${API_BASE}/employer/jobs/${jobId}/applicants`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

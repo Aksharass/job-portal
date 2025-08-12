@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 const JobDetails = () => {
   const { jobId } = useParams();
@@ -24,7 +25,7 @@ const JobDetails = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/employer/jobs/${jobId}`
+          `${API_BASE}/employer/jobs/${jobId}`
         );
         setJob((prev) => ({ ...prev, ...response.data }));
       } catch (error) {
@@ -45,7 +46,7 @@ const JobDetails = () => {
         return;
       }
       const response = await axios.get(
-        `http://localhost:5000/api/employer/jobs/${jobId}/check-application`,
+        `${API_BASE}/employer/jobs/${jobId}/check-application`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -86,7 +87,7 @@ const JobDetails = () => {
       }
 
       await axios.post(
-        `http://localhost:5000/api/employer/jobs/${jobId}/apply`,
+       `${API_BASE}/employer/jobs/${jobId}/apply`,
         formData,
         {
           headers: {

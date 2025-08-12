@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ManageJobs from "./ManageJobs"; // Make sure this path is correct
+import.meta.env; 
 
 const Dashboard = () => {
   const { token } = useSelector((state) => state.auth);
@@ -15,7 +16,8 @@ const Dashboard = () => {
       const fetchJobs = async () => {
         setLoading(true);
         try {
-          const response = await axios.get("http://localhost:5000/api/jobs");
+          const API_URL = import.meta.env.VITE_API_URL;
+          const response = await axios.get(`${API_URL}/jobs`);
           setJobs(response.data.jobs || []);
         } catch {
           toast.error("Failed to fetch jobs");

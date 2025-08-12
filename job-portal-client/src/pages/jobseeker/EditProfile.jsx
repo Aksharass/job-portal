@@ -4,6 +4,7 @@ import { setUser } from "../../redux/authSlice";
 import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_BASE = import.meta.env.VITE_API_URL; 
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const EditProfile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/user/profile/${userId}`,
+          `${API_BASE}/user/profile/${userId}`,
           {
             method: "GET",
             headers: {
@@ -103,7 +104,7 @@ const EditProfile = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/user/profile/${userId}`,
+        `${API_BASE}/user/profile/${userId}`,
         {
           method: "PUT",
           headers: {

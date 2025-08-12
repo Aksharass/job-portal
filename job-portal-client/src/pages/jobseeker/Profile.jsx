@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const Profile = () => {
   const [user, setUser] = useState({
     username: "johndoe",
@@ -27,7 +29,7 @@ const Profile = () => {
     if (user.resume) formData.append("resume", user.resume);
 
     try {
-      await axios.put("http://localhost:5000/api/users/profile", formData);
+      await axios.put(`${API_BASE}/users/profile`, formData);
       toast.success("Profile updated successfully");
       setEditing(false);
     } catch (error) {

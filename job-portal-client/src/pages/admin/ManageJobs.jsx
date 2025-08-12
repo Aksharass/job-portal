@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
+import.meta.env;
 const ManageJobs = () => {
   const { token } = useSelector((state) => state.auth);
   const [jobs, setJobs] = useState([]);
@@ -13,7 +13,8 @@ const ManageJobs = () => {
     const fetchJobs = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/api/jobs");
+        const API_URL = import.meta.env.VITE_API_URL;
+        const response = await axios.get(`${API_URL}/jobs`);
         setJobs(response.data.jobs || []);
       } catch {
         toast.error("Failed to fetch jobs");
