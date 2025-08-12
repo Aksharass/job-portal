@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/authSlice";
-import logo from "../assets/logoaks.png"; // Adjust the path to your logo image
+import logo from "../assets/Jobportallogo.png"; // Adjust the path to your logo image
 
 const Navbar = () => {
   const dispatch = useDispatch();

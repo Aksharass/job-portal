@@ -39,7 +39,7 @@ const JobSearch = ({ filters, onFilterChange }) => {
   };
 
   return (
-    <div className="bg-gray-200 rounded-xl shadow-md p-4 sm:p-6 md:p-8 w-full">
+    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 md:p-8 w-full">
       <h2 className="text-center text-xl font-semibold mb-4 text-black">Search Jobs</h2>
       <form
         onSubmit={handleSearch}
